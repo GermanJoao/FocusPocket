@@ -1,0 +1,117 @@
+
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>FocusPocket</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0b1220">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-dark">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="topbar-left">
+        <button id="menuBtn" class="icon-btn" aria-label="menu">☰</button>
+        <h1 class="app-title">FocusPocket</h1>
+      </div>
+      <div class="topbar-right">
+        <button id="themeToggle" class="icon-btn" aria-label="Trocar tema">🌓</button>
+      </div>
+    </header>
+
+    <main id="viewRoot" class="view-root">
+      <!-- Dashboard View -->
+      <section id="dashboard" class="view active">
+        <div class="card hero-card">
+          <div class="balance-row">
+            <div>
+              <div class="label">Saldo disponível</div>
+              <div id="balanceValue" class="balance-amount">R$ 0,00</div>
+            </div>
+            <div class="small-metrics">
+              <div class="metric">
+                <div class="metric-label">Tarefas</div>
+                <div id="taskProgress" class="metric-value">0 / 0</div>
+              </div>
+              <div class="metric">
+                <div class="metric-label">Objetivo</div>
+                <div id="dummyGoal" class="metric-value">—</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card compact">
+          <h3 class="card-title">Transações recentes</h3>
+          <ul id="txList" class="list compact-list"></ul>
+        </div>
+
+        <div class="card compact">
+          <h3 class="card-title">Tarefas recentes</h3>
+          <ul id="taskList" class="list compact-list"></ul>
+        </div>
+      </section>
+
+      <!-- Finanças View -->
+      <section id="financas" class="view">
+        <div class="card">
+          <h3 class="card-title">Registrar Transação</h3>
+          <form id="txForm" class="form">
+            <input id="txDesc" placeholder="Descrição (ex: Almoço)" required>
+            <input id="txAmount" placeholder="Valor (use - para gasto, ex: -25.50)" required>
+            <select id="txCategory">
+              <option value="outros">Outros</option>
+              <option value="alimentacao">Alimentação</option>
+              <option value="transporte">Transporte</option>
+              <option value="lazer">Lazer</option>
+            </select>
+            <div class="form-row">
+              <button type="submit" class="btn primary">Salvar</button>
+              <button type="button" id="clearTx" class="btn ghost">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Tarefas View -->
+      <section id="tarefas" class="view">
+        <div class="card">
+          <h3 class="card-title">Nova Tarefa</h3>
+          <form id="taskForm" class="form">
+            <input id="taskDesc" placeholder="Descreva a tarefa" required>
+            <select id="taskPriority">
+              <option value="baixa">Baixa</option>
+              <option value="media">Média</option>
+              <option value="alta">Alta</option>
+            </select>
+            <div class="form-row">
+              <button type="submit" class="btn primary">Adicionar</button>
+              <button type="button" id="clearTasks" class="btn ghost">Limpar</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <nav class="bottom-nav" role="navigation">
+      <button class="nav-btn active" data-target="dashboard" aria-label="Dashboard">🏠<span>Início</span></button>
+      <button class="nav-btn" data-target="financas" aria-label="Finanças">💸<span>Finanças</span></button>
+      <button class="nav-btn" data-target="tarefas" aria-label="Tarefas">✅<span>Tarefas</span></button>
+    </nav>
+
+    <footer class="footer-note">Feito com ajuda de IA • FocusPocket</footer>
+  </div>
+
+<script type="module" src="script.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js').catch(function(err){
+    console.log('ServiceWorker registration failed: ', err);
+  });
+}
+</script>
+</body>
+</html>

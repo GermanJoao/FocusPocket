@@ -1,0 +1,86 @@
+
+/* FocusPocket Luxe — mobile-first premium styling (dark-first) */
+:root{
+  --bg-dark: #0b1220;
+  --surface-dark: #0f1724;
+  --muted-dark: #94a3b8;
+  --accent: #2b6ef6;
+  --glass: rgba(255,255,255,0.04);
+  --card-radius: 14px;
+  --shadow: 0 6px 20px rgba(2,6,23,0.6);
+  --glass-2: rgba(255,255,255,0.02);
+  --gap:12px;
+  --max-width:420px;
+  --transition: 240ms cubic-bezier(.2,.9,.3,1);
+}
+
+/* Light theme tokens */
+body.theme-light{
+  --bg-dark: #f7f8fb;
+  --surface-dark: #ffffff;
+  --muted-dark: #6b7280;
+  --accent: #1f59d9;
+  --glass: rgba(2,6,23,0.02);
+  --shadow: 0 8px 24px rgba(16,24,40,0.08);
+  --glass-2: rgba(2,6,23,0.03);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0;font-family:Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto;}
+body{background:linear-gradient(180deg,var(--bg-dark), #07101a); color: #e6eef8; display:flex; align-items:center; justify-content:center; padding:20px;}
+.app-shell{width:100%; max-width:var(--max-width); height:100%; display:flex; flex-direction:column; background:transparent;}
+
+/* Top bar */
+.topbar{display:flex; align-items:center; justify-content:space-between; padding:12px 10px; margin-bottom:8px;}
+.topbar-left{display:flex; align-items:center; gap:10px;}
+.app-title{font-size:16px; margin:0; font-weight:600; letter-spacing:0.2px;}
+.icon-btn{background:transparent; border:none; color:inherit; font-size:18px; padding:8px; border-radius:10px; cursor:pointer; transition:all var(--transition);}
+.icon-btn:active{transform:scale(0.98)}
+
+/* View root */
+.view-root{flex:1; overflow:auto; padding-bottom:80px;}
+.view{display:none; padding:0 10px;}
+.view.active{display:block; animation:viewIn .28s ease both;}
+
+/* Cards */
+.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:var(--card-radius); padding:14px; margin:8px 0; box-shadow:var(--shadow); backdrop-filter: blur(6px);}
+.hero-card{padding:18px; display:flex; align-items:center; justify-content:space-between;}
+.balance-row{display:flex; gap:12px; align-items:center; width:100%; justify-content:space-between;}
+.label{font-size:12px; color:var(--muted-dark); margin-bottom:4px;}
+.balance-amount{font-size:22px; font-weight:700; color: #fff;}
+
+/* Compact lists */
+.list{list-style:none; padding:0; margin:0;}
+.compact-list li{display:flex; justify-content:space-between; align-items:center; padding:10px; border-radius:10px; margin-bottom:8px; background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));}
+.compact-list .tx-amount{font-weight:700; margin-left:8px;}
+.tx-neg{color:#ff5a5f}
+.tx-pos{color:#47d39a}
+
+/* form & inputs */
+.form input, .form select{width:100%; padding:12px; border-radius:10px; margin:8px 0; border:none; background:var(--glass); color:inherit; outline:none; transition:box-shadow var(--transition);}
+.form input::placeholder{color:var(--muted-dark);}
+.form-row{display:flex; gap:10px;}
+.btn{flex:1; padding:12px; border-radius:10px; border:none; cursor:pointer; font-weight:600; transition:transform var(--transition);}
+.btn.primary{background:linear-gradient(90deg,var(--accent), #3b82f6); color:white; box-shadow:0 8px 18px rgba(43,110,246,0.18);}
+.btn.ghost{background:transparent; border:1px solid rgba(255,255,255,0.06); color:var(--muted-dark);}
+
+/* bottom nav */
+.bottom-nav{position:fixed; left:50%; transform:translateX(-50%); bottom:18px; width:calc(var(--max-width) - 40px); display:flex; gap:8px; justify-content:space-between; padding:8px; background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:18px; box-shadow:0 10px 30px rgba(2,6,23,0.5);}
+.nav-btn{flex:1; background:transparent; border:none; color:var(--muted-dark); padding:8px 6px; display:flex; flex-direction:column; align-items:center; gap:2px; font-size:12px; border-radius:12px; cursor:pointer; transition:all var(--transition);}
+.nav-btn span{font-size:11px; color:var(--muted-dark);}
+.nav-btn.active{background:linear-gradient(90deg, rgba(43,110,246,0.12), rgba(59,130,246,0.08)); color:white; transform:translateY(-4px); box-shadow:0 8px 20px rgba(43,110,246,0.14);}
+
+
+/* footer note */
+.footer-note{position:fixed; bottom:8px; left:50%; transform:translateX(-50%); font-size:12px; color:var(--muted-dark); opacity:0.9;}
+
+/* animations */
+@keyframes viewIn{from{opacity:0; transform:translateY(8px)} to{opacity:1; transform:none}}
+.fadeIn{animation:fadeIn .28s ease both}
+@keyframes fadeIn{from{opacity:0} to{opacity:1}}
+
+/* responsive tweaks */
+@media(min-width:720px){
+  body{padding:28px;}
+  .app-shell{border-radius:22px; overflow:hidden;}
+}
